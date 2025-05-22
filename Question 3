@@ -1,0 +1,59 @@
+/*
+Given an unsorted array A of size N that contains only non-negative integers, find a continuous sub-array which adds to a given number S.
+In case of multiple subarrays, return the subarray which comes first on moving from left to right.
+    -->Example 1:
+        Input:
+            N = 5, S = 12
+            A = [1,2,3,7,5]
+        Output: 2 4
+    Explanation: The sum of elements from 2nd position to 4th position is 12.
+*/
+import java.util.Arrays;
+import java.util.Scanner;
+public class Tester {
+
+    public static void subArray(int [] a, int t){
+        int start = 0;
+        int end = 0;
+        boolean flag = false;
+        for(int i = 0; i<a.length; i++){
+            int count = a[i];
+            for(int j = i+1; j<a.length; j++){
+                count = count + a[j];
+                if(count == t){
+                    System.out.println("The sum of elements from " + (i+1) + " th position to " + (j+1) + " th position is " + t);
+                    start = i;
+                    end = j;
+                    flag = true;
+                    break;
+                }
+            }
+            if(flag){
+                break;
+            }
+        }
+        //Creating a sub array:
+        int [] sub = new int[(end-start)+1];
+        int j = 0;
+        for(int i = start; i<=end; i++){
+            sub[j] = a[i];
+            j++;
+        }
+        System.out.println(Arrays.toString(sub));
+        System.out.println("Output: " + (start+1) + ", " + (end+1));
+    }
+
+    public static void main(String [] args){
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter the length of the Array: ");
+        int length = sc.nextInt();
+        int [] arr = new int[length];
+        System.out.println("Enter the elements:");
+        for(int i = 0; i<length; i++){
+            arr[i] = sc.nextInt();
+        }
+        System.out.print("Enter the target number: ");
+        int target = sc.nextInt();
+        subArray(arr, target);
+    }
+}
