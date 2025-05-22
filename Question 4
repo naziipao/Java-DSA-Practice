@@ -1,0 +1,40 @@
+/*
+Given an array of N positive integers and an integer X. The task is to find the frequency of X in the array.
+  Example 1:
+    Input:
+      N = 5
+      arr = [1, 1, 1, 1, 1]
+      X = 1
+    Output:
+      5
+    Explanation: The frequency of 1 is 5.
+*/
+
+import java.util.Scanner;
+
+public class Tester{
+    public static void frequencyChecker(int [] a, int t){
+        int count = 0;
+
+        for(int i = 0; i<a.length; i++){
+            if(t == a[i]){
+                count++;
+            }
+        }
+        System.out.println("The frequency of " + t + " is " + count);
+    }
+    
+    public static void main(String [] args){
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter the length of the Array: ");
+        int length = sc.nextInt();
+        int [] arr = new int[length];
+        System.out.println("Enter the elements:");
+        for(int i = 0; i<length; i++){
+            arr[i] = sc.nextInt();
+        }
+        System.out.print("Enter the target number: ");
+        int target = sc.nextInt();
+        frequencyChecker(arr, target);
+    }
+}
